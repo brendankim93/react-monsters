@@ -10,7 +10,8 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: '',
+      isOpen: false
     }
   }
 
@@ -20,10 +21,16 @@ class App extends Component {
     .then(users => this.setState({ monsters: users }))
   }
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField, isOpen } = this.state;
     const filteredMonsters = monsters.filter(monster => 
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
+    const handleClick = e => {
+      this.setState({ isOpen: true });
+    }
+    const handleClose = e => {
+      this.setState({ isOpen: false });
+    }
       return (
         <div className='App'>
           <h1>Monsters Rolodex</h1>
@@ -31,7 +38,7 @@ class App extends Component {
           placeholder='search monsters'
           handleChange={e => this.setState({ searchField: e.target.value })}
           />
-          <CardList monsters={filteredMonsters} />
+          <CardList monsters={filteredMonsters} handleClick={handleClick} handleClose={handleClose} isOpen={isOpen} />
         </div>
       );
   }

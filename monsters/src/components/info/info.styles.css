@@ -1,0 +1,11 @@
+.info-container {
+    line-height: 60%;
+    height: 80%;
+    margin-bottom: 50px;
+    font-size: 13px;
+}
+
+.action-text {
+    font-size: 10px;
+    color: blue;
+}
